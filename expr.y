@@ -7,7 +7,7 @@
 %token TADD TMUL TSUB TDIV LAND LOR LNOT RMEN RMAI RMENEQ RMAIEQ REQU RDIF TAPAR TFPAR TNUM TFIM
 
 %%
-Linha :Expr TFIM {printf("Resultado:%lf\n", $1);exit(0);}
+Linha :Logico TFIM {printf("Resultado:%lf\n", $1);exit(0);}
 	; 
 Logico: Logico LAND TLogico {$$ = $1 && $3;}
 	| Logico LOR TLogico {$$ = $1 || $3;}
