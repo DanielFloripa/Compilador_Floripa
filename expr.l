@@ -2,8 +2,20 @@ delim	[ \t]
 ws	{delim}+
 digito	[0-9]
 num	{digito}+(\.{digito}*(E[+-]?{digito}+)?)?
+id ({alpha}|\_)({alpha}|{num}|\_)*
 
 %%
+
+"void" {return VOID;}
+"int" {return INT;}
+"String" {return STRING;}
+"if" {return IF;}
+"else" {return ELSE;}
+"while" {return WHILE;}
+"void" {return VOID;}
+"void" {return VOID;}
+
+
 {ws}	{}
 "+"	{return TADD;}
 "-"	{return TSUB;}

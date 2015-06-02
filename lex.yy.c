@@ -659,7 +659,7 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 6 "expr.l"
+#line 7 "expr.l"
 
 #line 665 "lex.yy.c"
 
@@ -746,98 +746,98 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 7 "expr.l"
+#line 8 "expr.l"
 {}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 8 "expr.l"
+#line 9 "expr.l"
 {return TADD;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 9 "expr.l"
+#line 10 "expr.l"
 {return TSUB;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 10 "expr.l"
+#line 11 "expr.l"
 {return TMUL;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 11 "expr.l"
+#line 12 "expr.l"
 {return TDIV;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 13 "expr.l"
+#line 14 "expr.l"
 {return RMEN;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 14 "expr.l"
+#line 15 "expr.l"
 {return RMAI;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 15 "expr.l"
+#line 16 "expr.l"
 {return RMENEQ;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 16 "expr.l"
+#line 17 "expr.l"
 {return RMAIEQ;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 17 "expr.l"
+#line 18 "expr.l"
 {return REQU;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 18 "expr.l"
+#line 19 "expr.l"
 {return RDIF;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 20 "expr.l"
+#line 21 "expr.l"
 {return LAND;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 21 "expr.l"
+#line 22 "expr.l"
 {return LOR;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 22 "expr.l"
+#line 23 "expr.l"
 {return LNOT;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 24 "expr.l"
+#line 25 "expr.l"
 {return TAPAR;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 25 "expr.l"
+#line 26 "expr.l"
 {return TFPAR;}
 	YY_BREAK
 case 17:
 /* rule 17 can match eol */
 YY_RULE_SETUP
-#line 26 "expr.l"
+#line 27 "expr.l"
 {return TFIM;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 28 "expr.l"
+#line 29 "expr.l"
 {yylval=atof(yytext); return TNUM;} 
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 29 "expr.l"
+#line 30 "expr.l"
 ECHO;
 	YY_BREAK
 #line 844 "lex.yy.c"
@@ -1838,4 +1838,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 29 "expr.l"
+#line 30 "expr.l"

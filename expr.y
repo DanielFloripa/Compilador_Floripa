@@ -2,6 +2,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define YYSTYPE double
+#define YYSTYPE2 struct atributo //
+#define TINT 1
+#define TSTRING 2
+
+struct atributo{
+	 int tipo;
+	 Lista *listId;
+	 char nomeId[9];
+}
+
 %}
 
 %token TADD TMUL TSUB TDIV LAND LOR LNOT RMEN RMAI RMENEQ RMAIEQ REQU RDIF TAPAR TFPAR TNUM TFIM
@@ -9,6 +19,17 @@
 %%
 Linha :Logico TFIM {printf("Resultado:%lf\n", $1);exit(0);}
 	; 
+	
+Programa: LstFuncao BlcPrincipal
+	| BlcPrincipal
+	;
+
+LstFuncao: LstFuncao Funcao
+	| Funcao 
+	;
+
+Funcao: TipoRetorno ID 
+	
 Logico: Logico LAND TLogico {$$ = $1 && $3;}
 	| Logico LOR TLogico {$$ = $1 || $3;}
 	| TLogico
