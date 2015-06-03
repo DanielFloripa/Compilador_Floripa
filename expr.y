@@ -151,8 +151,7 @@ int yyerror (char *str)
     extern int yylineno;
     extern char *yytext;
 
-    printf("%s <- antes\nyytext -> %s\n", str, yytext);
-    printf("linha: %d\n", yylineno);
+    printf("%s <- antes\n yytext -> %s\n linha: %d\n", str, yytext, yylineno);
 } 		 
 
 int yywrap()

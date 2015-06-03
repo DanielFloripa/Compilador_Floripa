@@ -4,7 +4,7 @@ digito	[0-9]
 alpha   [A-Za-z]
 num	{digito}+(\.{digito}*(E[+-]?{digito}+)?)?
 id ({alpha}|\_)({alpha}|{num}|\_)*
-literal \".*\"
+literal [\".*\"]
 
 %%
 "void" {return VOID;}
@@ -39,8 +39,8 @@ literal \".*\"
 ";" {return TPTOVRGL;}
 "," {return TVIRGULA;}
 
-"("	{return TAPAR;}
-")"	{return TFPAR;}
+"(" {return TAPAR;}
+")" {return TFPAR;}
 "{" {return TACHAVE;}
 "}" {return TFCHAVE;}
 
