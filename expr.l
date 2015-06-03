@@ -1,22 +1,24 @@
 delim	[ \t]
 ws	{delim}+
 digito	[0-9]
+alpha   [A-Za-z]
 num	{digito}+(\.{digito}*(E[+-]?{digito}+)?)?
 id ({alpha}|\_)({alpha}|{num}|\_)*
+literal \".*\"
 
 %%
-
 "void" {return VOID;}
 "int" {return INT;}
 "String" {return STRING;}
+
 "if" {return IF;}
 "else" {return ELSE;}
 "while" {return WHILE;}
-"void" {return VOID;}
-"void" {return VOID;}
 
+"read" {return READ;}
+"print" {return PRINT;}
+"return" {return RETURN;}
 
-{ws}	{}
 "+"	{return TADD;}
 "-"	{return TSUB;}
 "*"	{return TMUL;}
@@ -33,8 +35,19 @@ id ({alpha}|\_)({alpha}|{num}|\_)*
 "||" {return LOR;}
 "!" {return LNOT;}
 
+"=" {return TATRIB;}
+";" {return TPTOVRGL;}
+"," {return TVIRGULA;}
+
 "("	{return TAPAR;}
 ")"	{return TFPAR;}
-\n	{return TFIM;}
+"{" {return TACHAVE;}
+"}" {return TFCHAVE;}
 
+\n	{return TFIM;}
+<<EOF>> {return TFIM;}
+
+{ws} {}
+{id} {return ID;}
+{literal} {return LITERAL;}
 {num}	{yylval=atof(yytext); return TNUM;} 
