@@ -1,23 +1,15 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
-#define YYSTYPE double
-#define YYSTYPE2 struct atributo;
-#define T_INT 1
-#define T_STRING 2
-
-struct atributo{
-	 int tipo;
-	 // Lista *listId;
-	 char nomeId[9];
-};
+#include "lista.h"
+#define YYSTYPE atributo
 
 %}
 
 %token ID LITERAL TNUM VOID INT STRING IF ELSE WHILE READ PRINT RETURN TADD TSUB TMUL TDIV RMEN RMAI RMENEQ RMAIEQ REQU RDIF LAND LOR LNOT TATRIB TPTOVRGL TVIRGULA TAPAR TFPAR TACHAVE TFCHAVE TFIM
 
 %%
-Linha :Programa TFIM {printf("Resultado:%lf\n", $1);exit(0);}
+Linha :Programa TFIM {printf("Resultado: \n"); print(); exit(0);}
 	; 
 	
 Programa: ListaFuncao BlocoPrincipal
@@ -51,15 +43,15 @@ Declaracoes: Declaracoes Declaracao
 	| Declaracao
 	;
 	
-Declaracao: Tipo ListaId TPTOVRGL
+Declaracao: Tipo ListaId TPTOVRGL {tabela($1.tipo, $2.listaID); }
 	;
 	
 Tipo: INT
 	| STRING
 	;
 	
-ListaId: ListaId TVIRGULA ID
-	| ID
+ListaId: ListaId TVIRGULA ID {$$.listaID = insereLista($$.listaID, $3.id);}
+	| ID {$$.listaID = iniciaLista($1.id);}
 	;
 	
 Bloco: TACHAVE ListaCmd TFCHAVE
@@ -120,38 +112,38 @@ FatorLogico: TAPAR ExprLogico TFPAR
 	| ExprRelacional
 	;
 	
-ExprRelacional: Expr RMENEQ  Expr {$$ = $1 <= $3;}
-	| Expr RMAIEQ  Expr {$$ = $1 >= $3;}
-	| Expr RMEN Expr {$$ = $1 < $3;}
-	| Expr RMAI Expr {$$ = $1 > $3;}
-	| Expr REQU  Expr {$$ = $1 == $3;}
-	| Expr RDIF  Expr {$$ = $1 != $3;}
+ExprRelacional: Expr RMENEQ  Expr 
+	| Expr RMAIEQ  Expr
+	| Expr RMEN Expr
+	| Expr RMAI Expr
+	| Expr REQU  Expr
+	| Expr RDIF  Expr
 	;
 	
-Expr: Expr TADD Termo {$$ = $1 + $3;}
-	| Expr TSUB Termo {$$ = $1 - $3;}
+Expr: Expr TADD Termo
+	| Expr TSUB Termo 
 	| Termo
 	;
 	
-Termo: Termo TMUL Fator {$$ = $1 * $3;}
-	| Termo TDIV Fator {$$ = $1 / $3;}
+Termo: Termo TMUL Fator
+	| Termo TDIV Fator
 	| Fator
 	;
 	
 Fator: TNUM 
-	| TAPAR Expr TFPAR {$$ = $2;}
-	| TSUB Fator {$$ = -$2;}
-	| TADD Fator {$$ = +$2;}
+	| TAPAR Expr TFPAR
+	| TSUB Fator
+	| TADD Fator
 	;
 %%
 #include "lex.yy.c"
 
 int yyerror (char *str)
 {
-    extern int yylineno;
+
     extern char *yytext;
 
-    printf("%s <- antes\n yytext -> %s\n linha: %d\n", str, yytext, yylineno);
+    printf("%s <- antes\n yytext -> %s\n", str, yytext);
 } 		 
 
 int yywrap()

@@ -1,5 +1,5 @@
-delim	[ \t]
-ws	{delim}+
+tabul	[ \t]
+ws	{tabul}+
 digito	[0-9]
 alpha   [A-Za-z]
 num	{digito}+(\.{digito}*(E[+-]?{digito}+)?)?
@@ -7,9 +7,6 @@ id ({alpha}|\_)({alpha}|{num}|\_)*
 literal [\".*\"]
 
 %%
-"void" {return VOID;}
-"int" {return INT;}
-"String" {return STRING;}
 
 "if" {return IF;}
 "else" {return ELSE;}
@@ -18,6 +15,10 @@ literal [\".*\"]
 "read" {return READ;}
 "print" {return PRINT;}
 "return" {return RETURN;}
+
+"int" {return INT;}
+"void" {return VOID;}
+"String" {return STRING;}
 
 "+"	{return TADD;}
 "-"	{return TSUB;}
@@ -44,10 +45,10 @@ literal [\".*\"]
 "{" {return TACHAVE;}
 "}" {return TFCHAVE;}
 
-\n	{return TFIM;}
+"\n"	{}
 <<EOF>> {return TFIM;}
 
 {ws} {}
-{id} {return ID;}
+{id} {strcpy(yylval.id, yytext); return ID;}
 {literal} {return LITERAL;}
-{num}	{yylval=atof(yytext); return TNUM;} 
+{num}	{return TNUM;} 
