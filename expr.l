@@ -1,13 +1,13 @@
-tabul	[ \t]
-ws	{tabul}+
-digito	[0-9]
-alpha   [A-Za-z]
-num	{digito}+(\.{digito}*(E[+-]?{digito}+)?)?
-id ({alpha}|\_)({alpha}|{num}|\_)*
-literal [\".*\"]
+delim   [ \t\n\v\f]
+ws      {delim}+
+digito  [0-9]
+num     {digito}+
+alpha   [a-zA-Z]
+literal \".*\"
+id      ({alpha}|\_)({alpha}|{num}|\_)*
 
 %%
-
+{ws} {}
 "if" {return IF;}
 "else" {return ELSE;}
 "while" {return WHILE;}
@@ -45,10 +45,7 @@ literal [\".*\"]
 "{" {return TACHAVE;}
 "}" {return TFCHAVE;}
 
-"\n"	{}
 <<EOF>> {return TFIM;}
-
-{ws} {}
 {id} {strcpy(yylval.id, yytext); return ID;}
 {literal} {return LITERAL;}
 {num}	{return TNUM;} 

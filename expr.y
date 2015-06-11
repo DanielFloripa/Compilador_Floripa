@@ -9,7 +9,7 @@
 %token ID LITERAL TNUM VOID INT STRING IF ELSE WHILE READ PRINT RETURN TADD TSUB TMUL TDIV RMEN RMAI RMENEQ RMAIEQ REQU RDIF LAND LOR LNOT TATRIB TPTOVRGL TVIRGULA TAPAR TFPAR TACHAVE TFCHAVE TFIM
 
 %%
-Linha :Programa TFIM {printf("Resultado: \n"); print(); exit(0);}
+Linha :Programa TFIM {print(); exit(0);}
 	; 
 	
 Programa: ListaFuncao BlocoPrincipal
@@ -43,15 +43,15 @@ Declaracoes: Declaracoes Declaracao
 	| Declaracao
 	;
 	
-Declaracao: Tipo ListaId TPTOVRGL {tabela($1.tipo, $2.listaID); }
+Declaracao: Tipo ListaId TPTOVRGL {tabela($1.tipo, $2.listaID);}
 	;
 	
-Tipo: INT
-	| STRING
+Tipo: INT {$$.tipo = T_INT;}
+	| STRING {$$.tipo = T_STRING;}
 	;
 	
-ListaId: ListaId TVIRGULA ID {$$.listaID = insereLista($$.listaID, $3.id);}
-	| ID {$$.listaID = iniciaLista($1.id);}
+ListaId: ID {$$.listaID = iniciaLista($1.id);}
+	| ListaId TVIRGULA ID {$$.listaID = insereLista($$.listaID, $3.id);}
 	;
 	
 Bloco: TACHAVE ListaCmd TFCHAVE
@@ -140,13 +140,13 @@ Fator: TNUM
 
 int yyerror (char *str)
 {
-
+    extern int yylineno;
     extern char *yytext;
-
-    printf("%s <- antes\n yytext -> %s\n", str, yytext);
-} 		 
+    printf("%s <- antes\nyytex -> %s\n", str, yytext);
+    printf("linha: %d\n", yylineno);
+}
 
 int yywrap()
 {
-	return 1;
+    return 1;
 }

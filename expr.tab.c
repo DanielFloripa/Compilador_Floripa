@@ -67,20 +67,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#define YYSTYPE double
-#define YYSTYPE2 struct atributo;
-#define T_INT 1
-#define T_STRING 2
-
-struct atributo{
-	 int tipo;
-	 // Lista *listId;
-	 char nomeId[9];
-};
+#include "lista.h"
+#define YYSTYPE atributo
 
 
 /* Line 371 of yacc.c  */
-#line 84 "expr.tab.c"
+#line 76 "expr.tab.c"
 
 # ifndef YY_NULL
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -178,7 +170,7 @@ int yyparse ();
 /* Copy the second part of user declarations.  */
 
 /* Line 390 of yacc.c  */
-#line 182 "expr.tab.c"
+#line 174 "expr.tab.c"
 
 #ifdef short
 # undef short
@@ -467,7 +459,7 @@ static const yytype_uint8 yyprhs[] =
 {
        0,     0,     3,     6,     9,    11,    14,    16,    23,    29,
       31,    33,    37,    39,    42,    47,    51,    54,    56,    60,
-      62,    64,    68,    70,    74,    77,    79,    81,    83,    85,
+      62,    64,    66,    70,    74,    77,    79,    81,    83,    85,
       87,    89,    91,    93,    97,   103,   111,   117,   122,   127,
      133,   139,   145,   151,   156,   160,   162,   166,   170,   172,
      175,   177,   181,   183,   187,   191,   195,   199,   203,   207,
@@ -483,7 +475,7 @@ static const yytype_int8 yyrhs[] =
       -1,     6,    -1,    42,    30,    43,    -1,    43,    -1,    47,
        3,    -1,    33,    45,    50,    34,    -1,    33,    50,    34,
       -1,    45,    46,    -1,    46,    -1,    47,    48,    29,    -1,
-       7,    -1,     8,    -1,    48,    30,     3,    -1,     3,    -1,
+       7,    -1,     8,    -1,     3,    -1,    48,    30,     3,    -1,
       33,    50,    34,    -1,    50,    51,    -1,    51,    -1,    53,
       -1,    54,    -1,    55,    -1,    56,    -1,    57,    -1,    58,
       -1,    52,    -1,    14,    64,    29,    -1,     9,    31,    60,
@@ -506,13 +498,13 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    20,    20,    23,    24,    27,    28,    31,    32,    35,
-      36,    39,    40,    43,    46,    47,    50,    51,    54,    57,
-      58,    61,    62,    65,    68,    69,    72,    73,    74,    75,
-      76,    77,    78,    81,    84,    85,    88,    91,    92,    95,
-      96,    99,   102,   103,   106,   107,   110,   111,   112,   115,
-     116,   119,   120,   123,   124,   125,   126,   127,   128,   131,
-     132,   133,   136,   137,   138,   141,   142,   143,   144
+       0,    12,    12,    15,    16,    19,    20,    23,    24,    27,
+      28,    31,    32,    35,    38,    39,    42,    43,    46,    49,
+      50,    53,    54,    57,    60,    61,    64,    65,    66,    67,
+      68,    69,    70,    73,    76,    77,    80,    83,    84,    87,
+      88,    91,    94,    95,    98,    99,   102,   103,   104,   107,
+     108,   111,   112,   115,   116,   117,   118,   119,   120,   123,
+     124,   125,   128,   129,   130,   133,   134,   135,   136
 };
 #endif
 
@@ -564,7 +556,7 @@ static const yytype_uint8 yyr2[] =
 {
        0,     2,     2,     2,     1,     2,     1,     6,     5,     1,
        1,     3,     1,     2,     4,     3,     2,     1,     3,     1,
-       1,     3,     1,     3,     2,     1,     1,     1,     1,     1,
+       1,     1,     3,     3,     2,     1,     1,     1,     1,     1,
        1,     1,     1,     3,     5,     7,     5,     4,     4,     5,
        5,     5,     5,     4,     3,     1,     3,     3,     1,     2,
        1,     3,     1,     3,     3,     3,     3,     3,     3,     3,
@@ -581,13 +573,13 @@ static const yytype_uint8 yydefact[] =
        0,     0,    25,    32,    26,    27,    28,    29,    30,    31,
        1,     2,     5,     3,     0,     0,     0,     0,     0,     0,
        0,    65,     0,     0,     0,     0,    61,    64,    16,     0,
-      22,     0,    15,    24,     0,     0,     0,     0,     0,    45,
+      21,     0,    15,    24,     0,     0,     0,     0,     0,    45,
        0,     0,     0,    48,    50,    52,     0,     0,     0,     0,
        0,    68,    67,     0,     0,     0,    33,     0,     0,    14,
       18,     0,     0,     0,    12,     0,    38,    37,    43,     0,
        0,    49,     0,     0,     0,     0,     0,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,    66,    59,    60,
-      62,    63,    21,     8,     0,     0,    13,    44,    42,    51,
+      62,    63,    22,     8,     0,     0,    13,    44,    42,    51,
       46,    47,     0,    34,    55,    56,    53,    54,    57,    58,
       36,    41,    40,    39,    11,     7,     0,     0,    23,    35
 };
@@ -1497,91 +1489,43 @@ yyreduce:
     {
         case 2:
 /* Line 1787 of yacc.c  */
-#line 20 "expr.y"
-    {printf("Resultado:%lf\n", (yyvsp[(1) - (2)]));exit(0);}
+#line 12 "expr.y"
+    {print(); exit(0);}
     break;
 
-  case 53:
+  case 18:
 /* Line 1787 of yacc.c  */
-#line 123 "expr.y"
-    {(yyval) = (yyvsp[(1) - (3)]) <= (yyvsp[(3) - (3)]);}
+#line 46 "expr.y"
+    {tabela((yyvsp[(1) - (3)]).tipo, (yyvsp[(2) - (3)]).listaID);}
     break;
 
-  case 54:
+  case 19:
 /* Line 1787 of yacc.c  */
-#line 124 "expr.y"
-    {(yyval) = (yyvsp[(1) - (3)]) >= (yyvsp[(3) - (3)]);}
+#line 49 "expr.y"
+    {(yyval).tipo = T_INT;}
     break;
 
-  case 55:
+  case 20:
 /* Line 1787 of yacc.c  */
-#line 125 "expr.y"
-    {(yyval) = (yyvsp[(1) - (3)]) < (yyvsp[(3) - (3)]);}
+#line 50 "expr.y"
+    {(yyval).tipo = T_STRING;}
     break;
 
-  case 56:
+  case 21:
 /* Line 1787 of yacc.c  */
-#line 126 "expr.y"
-    {(yyval) = (yyvsp[(1) - (3)]) > (yyvsp[(3) - (3)]);}
+#line 53 "expr.y"
+    {(yyval).listaID = iniciaLista((yyvsp[(1) - (1)]).id);}
     break;
 
-  case 57:
+  case 22:
 /* Line 1787 of yacc.c  */
-#line 127 "expr.y"
-    {(yyval) = (yyvsp[(1) - (3)]) == (yyvsp[(3) - (3)]);}
-    break;
-
-  case 58:
-/* Line 1787 of yacc.c  */
-#line 128 "expr.y"
-    {(yyval) = (yyvsp[(1) - (3)]) != (yyvsp[(3) - (3)]);}
-    break;
-
-  case 59:
-/* Line 1787 of yacc.c  */
-#line 131 "expr.y"
-    {(yyval) = (yyvsp[(1) - (3)]) + (yyvsp[(3) - (3)]);}
-    break;
-
-  case 60:
-/* Line 1787 of yacc.c  */
-#line 132 "expr.y"
-    {(yyval) = (yyvsp[(1) - (3)]) - (yyvsp[(3) - (3)]);}
-    break;
-
-  case 62:
-/* Line 1787 of yacc.c  */
-#line 136 "expr.y"
-    {(yyval) = (yyvsp[(1) - (3)]) * (yyvsp[(3) - (3)]);}
-    break;
-
-  case 63:
-/* Line 1787 of yacc.c  */
-#line 137 "expr.y"
-    {(yyval) = (yyvsp[(1) - (3)]) / (yyvsp[(3) - (3)]);}
-    break;
-
-  case 66:
-/* Line 1787 of yacc.c  */
-#line 142 "expr.y"
-    {(yyval) = (yyvsp[(2) - (3)]);}
-    break;
-
-  case 67:
-/* Line 1787 of yacc.c  */
-#line 143 "expr.y"
-    {(yyval) = -(yyvsp[(2) - (2)]);}
-    break;
-
-  case 68:
-/* Line 1787 of yacc.c  */
-#line 144 "expr.y"
-    {(yyval) = +(yyvsp[(2) - (2)]);}
+#line 54 "expr.y"
+    {(yyval).listaID = insereLista((yyval).listaID, (yyvsp[(3) - (3)]).id);}
     break;
 
 
 /* Line 1787 of yacc.c  */
-#line 1585 "expr.tab.c"
+#line 1529 "expr.tab.c"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1813,7 +1757,7 @@ yyreturn:
 
 
 /* Line 2050 of yacc.c  */
-#line 146 "expr.y"
+#line 138 "expr.y"
 
 #include "lex.yy.c"
 
@@ -1821,11 +1765,11 @@ int yyerror (char *str)
 {
     extern int yylineno;
     extern char *yytext;
-
-    printf("%s <- antes\n yytext -> %s\n linha: %d\n", str, yytext, yylineno);
-} 		 
+    printf("%s <- antes\nyytex -> %s\n", str, yytext);
+    printf("linha: %d\n", yylineno);
+}
 
 int yywrap()
 {
-	return 1;
+    return 1;
 }

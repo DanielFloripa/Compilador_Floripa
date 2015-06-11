@@ -1,7 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-
 
 #include "lista.h"
 
@@ -19,7 +15,7 @@ Lista* iniciaLista(char *id){
 
 Lista* insereLista(Lista *l, char *id){
     if (l == NULL){
-        //fprintf(stderr, "Error\n");
+        //fprintf(stderr, "Error\n"); //tirar
         return NULL;
     } else {
         Lista *aux = l;
@@ -34,7 +30,8 @@ Lista* insereLista(Lista *l, char *id){
         
         aux->pxmo = px; // ver se nao eh trocado
         strcpy(px->id, id);
-
+		
+		free(px);
         return l;
     }
 }
@@ -45,6 +42,7 @@ void tabela(int tipo, Lista *l){
         Lista *tab = (Lista*) malloc (sizeof(Lista));
         tab->pxmo = NULL;
         s = tab;
+        free(tab);
     }
 
     Lista *aux = l;
@@ -66,12 +64,12 @@ void tabela(int tipo, Lista *l){
 void print(){
     Lista *aux = s->pxmo;
 
-    static int a=0;
+    int a=0;
     a++;
 
-    while (aux !=NULL){
+    do{
         printf("%d Id = %s \t tipo = %s \n",a,  aux->id, aux->tipo == T_INT ? "INT" : "STRING");
 
         aux = aux->pxmo;
-    }
+    }while (aux !=NULL);
 }
